@@ -1,6 +1,6 @@
 local _, core = ...;
 
-local AddonPrefix = "PRIOLOOTLIST"
+local AddonPrefix = "PRIORITYLOOTLIST"
 
 local function listmembers(rank_index)
     local num_members = GetNumGuildMembers()
@@ -67,19 +67,8 @@ local function stopsound()
 end
 
 local function chickendrums()
-    local soundType = {
-        SOUND = 1,
-        GAME_MUSIC = 2,
-        CUSTOM = 3
-    }
-    local drums = {
-        ["sound"] = "Interface\\AddOns\\PriorityLootList\\Sounds\\chickendrums.mp3",
-        ["description"] = "Chicken Drums!",
-        ["type"] = soundType.CUSTOM
-    }
-    C_ChatInfo.SendAddonMessage( AddonPrefix, "cd", "RAID" );
-    stopsound()
-    customSoundId = select(2, PlaySoundFile(drums.sound))
+    C_ChatInfo.SendAddonMessage(AddonPrefix, "cd", "RAID");
+    C_ChatInfo.SendAddonMessage(AddonPrefix, "cd", "WHISPER", UnitName("player"))
 end
 
 function Addon_OnEvent(self, event, ...)
@@ -88,21 +77,21 @@ function Addon_OnEvent(self, event, ...)
         if args[1] == AddonPrefix then
             -- print(event, ...)
             if args[2] == "cd" then
-                chickendrums()
+                stopsound()
+                customSoundId = select(2, PlaySoundFile("Interface\\AddOns\\PriorityLootList\\Sounds\\cd.mp3"))
             end
         end
 	elseif event == "PLAYER_LOGIN" then
 		local successfulRequest = C_ChatInfo.RegisterAddonMessagePrefix(AddonPrefix)
 	elseif event == "PLAYER_ENTERING_WORLD" then
-		-- C_ChatInfo.SendAddonMessage(AddonPrefix, "cd", "WHISPER", UnitName("player"))
 	end
 end
 
-SLASH_PPL1 = "/ppl"
-SlashCmdList["PPL"] = function(cmd)
+SLASH_PLL1 = "/pll"
+SlashCmdList["PLL"] = function(cmd)
     process_cmd({
         ["list"] = list,
-        ["chickendrums"] = chickendrums,
+        ["cd"] = chickendrums,
         ["stopsound"] = stopsound
     }, unpack(split(cmd)))
 end
