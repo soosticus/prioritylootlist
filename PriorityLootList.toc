@@ -1,0 +1,9 @@
+## Interface: 11306
+## Title: Priority Loot List
+## Notes: Priority Loot List loot system management
+## Author: Soost
+## Version: 0.0.1
+
+ui.xml
+colors.lua
+main.lua
