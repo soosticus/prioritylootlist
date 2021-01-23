@@ -1,9 +1,12 @@
 ## Interface:  ${INTERFACE}
 ## Title: Priority Loot List
 ## Notes: Priority Loot List loot system management
-## Author: Soost
+## Author: Soost Icus
 ## Version: ${ADDON_VERSION}
 
+embeds.xml
 ui.xml
-colors.lua
 main.lua
+colors.lua
+console.lua
+comm.lua

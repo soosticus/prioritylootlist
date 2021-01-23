@@ -1,6 +1,12 @@
-local _, core = ...;
+local _G = _G;
+local PLL = _G.PLL;
 
-core.ClassColors = {
+PLL.Color = "|cFF327DA8";
+function PLL:ColorizeText(text)
+    return ("%s%s|r"):format(PLL.Color, text);
+end
+
+PLL.ClassColors = {
 	  ["Druid"] = { r = 1.00, g = 0.49, b = 0.04, hex = "FF7D0A" },
 	[ "Hunter"] = { r = 0.67, g = 0.83, b = 0.45, hex = "ABD473" },
 	   ["Mage"] = { r = 0.25, g = 0.78, b = 0.92, hex = "40C7EB" },
