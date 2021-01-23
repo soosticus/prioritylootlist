@@ -1,8 +1,8 @@
-## Interface:  11306
+## Interface: ${INTERFACE}
 ## Title: Priority Loot List
 ## Notes: Priority Loot List loot system management
 ## Author: Soost Icus
-## Version: 0.0.1
+## Version: ${ADDON_VERSION}
 
 embeds.xml
 ui.xml
