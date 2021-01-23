@@ -23,7 +23,7 @@ jobs:
       with:
         tokenPrefix: '${'
         tokenSuffix: '}'
-        files: '["PriorityLootList.toc", "core.lua"]'
+        files: '["PriorityLootList/PriorityLootList.toc", "PriorityLootList/main.lua"]'
       env:
         ADDON_VERSION: ${{ steps.get_version.outputs.ADDON_VERSION }}
         INTERFACE: ${{ steps.get_version.outputs.CLASSIC_INTERFACE }}
@@ -48,7 +48,7 @@ jobs:
       with:
         tokenPrefix: '${'
         tokenSuffix: '}'
-        files: '["PriorityLootList.toc", "core.lua"]'
+        files: '["PriorityLootList/PriorityLootList.toc", "PriorityLootList/main.lua"]'
       env:
         ADDON_VERSION: ${{ steps.get_version.outputs.ADDON_VERSION }}
         INTERFACE: ${{ steps.get_version.outputs.RETAIL_INTERFACE }}
