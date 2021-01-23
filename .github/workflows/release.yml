@@ -1,56 +1,50 @@
-on:
-  push:
-    # Sequence of patterns matched against refs/tags
-    tags:
-    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
-
-name: Upload Release Asset
-
 jobs:
   build:
     name: Upload Release Asset
     runs-on: ubuntu-latest
     steps:
-    - name: Pull source
-      uses: actions/checkout@v2
-
-    - name: Set globals
-      id: get_version
-      run: |
-        echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-        echo ::set-output name=ADDON_VERSION::${GITHUB_REF/refs\/tags\/v/}
-        echo ::set-output name=CLASSIC_INTERFACE::11306
-
-    - name: Set TOC
-      uses: cschleiden/replace-tokens@v1.0
-      with:
-        tokenPrefix: '${'
-        tokenSuffix: '}'
-        files: '["PriorityLootList/PriorityLootList.toc", "PriorityLootList/main.lua"]'
-      env:
-        ADDON_VERSION: ${{ steps.get_version.outputs.ADDON_VERSION }}
-        INTERFACE: ${{ steps.get_version.outputs.CLASSIC_INTERFACE }}
-
-      - name: Build project # This would actually build your project, using zip for an example artifact
+      - name: Pull source
+        uses: actions/checkout@v2
+      - id: get_version
+        name: Set globals
+        run: |
+          echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+          echo ::set-output name=ADDON_VERSION::${GITHUB_REF/refs\/tags\/v/}
+          echo ::set-output name=CLASSIC_INTERFACE::11306
+      - env:
+          ADDON_VERSION: '${{ steps.get_version.outputs.ADDON_VERSION }}'
+          INTERFACE: '${{ steps.get_version.outputs.CLASSIC_INTERFACE }}'
+        name: Set TOC
+        uses: cschleiden/replace-tokens@v1.0
+        with:
+          files: '["PriorityLootList/PriorityLootList.toc", "PriorityLootList/main.lua"]'
+          tokenPrefix: '${'
+          tokenSuffix: '}'
+      - name: Build project
         run: |
           zip -r PriorityLootList-${{ steps.get_version.outputs.VERSION }}-classic.zip PriorityLootList
-      - name: Create Release
+      - env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
         id: create_release
+        name: Create Release
         uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.get_version.outputs.VERSION }}
-          release_name: Release ${{ steps.get_version.outputs.VERSION }}
           draft: false
           prerelease: false
-      - name: Upload Release Asset
-        id: upload-release-asset 
+          release_name: 'Release ${{ steps.get_version.outputs.VERSION }}'
+          tag_name: '${{ steps.get_version.outputs.VERSION }}'
+      - env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+        id: upload-release-asset
+        name: Upload Release Asset
         uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./PriorityLootList-${{ steps.get_version.outputs.VERSION }}-classic.zip
-          asset_name: PriorityLootList-${{ steps.get_version.outputs.VERSION }}-classic.zip
           asset_content_type: application/zip
+          asset_name: 'PriorityLootList-${{ steps.get_version.outputs.VERSION }}-classic.zip'
+          asset_path: './PriorityLootList-${{ steps.get_version.outputs.VERSION }}-classic.zip'
+          upload_url: '${{ steps.create_release.outputs.upload_url }}'
+name: Upload Release Asset
+'on':
+  push:
+    tags:
+      - v*
