@@ -3,6 +3,7 @@
 ## Notes: Addon to manage your Priority Loot List (Onslaught Loot System) based loot ditribution.
 ## Author: Soost Icus
 ## Version: ${ADDON_VERSION}
+## SavedVariables: PLL_DB
 ## X-Website: https://github.com/soosticus/PriorityLootList
 
 embeds.xml
@@ -10,5 +11,6 @@ ui.xml
 init.lua
 colors.lua
 console.lua
+options.lua
 main.lua
 comm.lua
