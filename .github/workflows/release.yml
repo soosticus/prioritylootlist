@@ -17,7 +17,7 @@ jobs:
         name: Set TOC
         uses: cschleiden/replace-tokens@v1.0
         with:
-          files: '["PriorityLootList/PriorityLootList.toc", "PriorityLootList/main.lua"]'
+          files: '["PriorityLootList/PriorityLootList.toc", "PriorityLootList/init.lua"]'
           tokenPrefix: '${'
           tokenSuffix: '}'
       - name: Build project

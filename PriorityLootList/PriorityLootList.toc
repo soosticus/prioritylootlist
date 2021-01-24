@@ -7,7 +7,8 @@
 
 embeds.xml
 ui.xml
-main.lua
+init.lua
 colors.lua
 console.lua
+main.lua
 comm.lua
