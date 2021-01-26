@@ -42,13 +42,13 @@ function PLL:InitOptions()
                     order = 4,
                     type = "description",
                     name = ("%s: https://github.com/soosticus/PriorityLootList"):format(
-                        self:ColorizeText("GitHub Support")),
+                        self:RainbowizeText("GitHub Support")),
                 },
                 desc2 = {
                     order = 5,
                     type = "description",
                     name = ("%s: https://discord.gg/hqSNgup7cR"):format(
-                        self:ColorizeText("Discord")),
+                        self:RainbowizeText("Discord")),
                 },
             },
         },

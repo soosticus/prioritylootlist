@@ -2,17 +2,42 @@ local _G = _G;
 local PLL = _G.PLL;
 
 function PLL:ColorizeText(text, color)
-	c = self.Colors["Blue"].hex
-	if(self.Colors[color] ~= nil) then
-		c = self.Colors[color].hex
+	local c = self.Rainbow["Blue"].hex
+	if(self.Rainbow[color] ~= nil) then
+		c = self.Rainbow[color].hex
 	end
     return ("|cFF%s%s|r"):format(c, text);
 end
 
-PLL.Colors = {
-	    ["Blue"] = { r = 0.26, g = 0.53, b = 0.96, hex = "4287F5" },
-	  ["Purple"] = { r = 0.56, g = 0.25, b = 0.96, hex = "9042f5" },
-	     ["Red"] = { r = 0.69, g = 0.13, b = 0.13, hex = "B22222" }
+local rainbowArray = nil;
+function PLL:RainbowizeText(text)
+	local chars = { text:match( (text:gsub(".", "(.)")) ) };
+	local res = "";
+	local colors = {};
+	local i = 0;
+	if(not rainbowArray) then
+		rainbowArray = {}
+		for _, c in pairs(self.Rainbow) do
+			rainbowArray[i] = c.hex;
+			i=i+1;
+		end
+	end
+	i=0;
+	for _, c in pairs(chars) do
+		res = ("%s|cFF%s%s|r"):format(res, rainbowArray[i % #rainbowArray], c);
+		i=i+1;
+	end
+    return res;
+end
+
+PLL.Rainbow = {
+		    ["Red"] = { r = 1.00, g = 0.40, b = 0.39, hex = "FF6663" },
+		 ["Orange"] = { r = 1.00, g = 0.70, b = 0.27, hex = "FEB144" },
+		 ["Yellow"] = { r = 0.99, g = 0.99, b = 0.59, hex = "FDFD97" },
+		  ["Green"] = { r = 0.62, g = 0.88, b = 0.62, hex = "9EE09E" },
+		   ["Blue"] = { r = 0.62, g = 0.76, b = 0.81, hex = "9EC1CF" },
+		 ["Indigo"] = { r = 0.47, g = 0.00, b = 0.70, hex = "7600B1" },
+		 ["Violet"] = { r = 0.80, g = 0.60, b = 0.79, hex = "CC99C9" }
 }
 
 PLL.ClassColors = {

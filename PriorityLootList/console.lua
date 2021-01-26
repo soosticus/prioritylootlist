@@ -48,7 +48,7 @@ function PLL:InitConsole()
     end
     setupAlias("options", "opt");
 
-    AceConfig:RegisterOptionsTable(self:ColorizeText(PLL.name), {
+    AceConfig:RegisterOptionsTable(self:RainbowizeText(PLL.name), {
         type = "group",
         args = options,
     }, { "pll" });

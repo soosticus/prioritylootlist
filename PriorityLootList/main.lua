@@ -51,7 +51,7 @@ local function GetSystemFrame()
 end
 
 function PLL:Notify(str, ...)
-    local msg = ("%s: %s"):format(self:ColorizeText(PLL.name), tostring(str):format(...));
+    local msg = ("%s: %s"):format(self:RainbowizeText(PLL.name), tostring(str):format(...));
     GetSystemFrame():AddMessage(msg, 1, 1, 1);
 end
 

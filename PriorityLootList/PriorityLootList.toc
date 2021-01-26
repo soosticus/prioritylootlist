@@ -1,5 +1,5 @@
 ## Interface: ${INTERFACE}
-## Title: Priority Loot List
+## Title: |cFFFF6663P|r|cFFFEB144r|r|cFFFDFD97i|r|cFF9EE09Eo|r|cFF9EC1CFr|r|cFF7600B1i|r|cFFCC99C9t|r|cFFFF6663y|r |cFFFEB144L|r|cFFFDFD97o|r|cFF9EE09Eo|r|cFF9EC1CFt|r |cFF7600B1L|r|cFFCC99C9i|r|cFFFF6663s|r|cFFFEB144t|r
 ## Notes: Addon to manage your Priority Loot List (Onslaught Loot System) based loot ditribution.
 ## Author: Soost Icus
 ## Version: ${ADDON_VERSION}
