@@ -7,7 +7,7 @@ local AceDB = _G.LibStub("AceDB-3.0");
 function PLL:InitOptions()
     self.db = AceDB:New("PLL_DB", {
         global = {
-            playRemoteDrums = true,
+            enableDrums = true,
         },
     });
     local guiOptions = {
@@ -22,33 +22,33 @@ function PLL:InitOptions()
                     type = "header",
                     name = "General",
                 },
-                desc = {
-                    order = 2,
-                    type = "description",
-                    name = ("Brought to you by %s of <%s>, %s!"):format(
-                        self:ColorizeText("Xanido"), self:ColorizeText("Always Be Pulling"), self:ColorizeText("US-Atiesh (Alliance)")),
-                },
-                desc2 = {
-                    order = 3,
-                    type = "description",
-                    name = ("%s: leave a comment on CurseForge/WoWInterface/GitHub, or reach out to %s on reddit."):format(
-                        self:ColorizeText("Feedback/support"), self:ColorizeText("ross456")),
-                },
                 settings = {
                     name = " ",
                     type = "group",
                     inline = true,
-                    order = 4,
+                    order = 2,
                     args = {
-                        playRemoteDrums = {
-                            name = "Play Other's Drums",
+                        enableDrums = {
+                            name = "Enable Drums",
                             order = 1,
-                            desc = "Play the fun instrumental when sent from other players",
+                            desc = "Enable the fun instrumental (/pll drums)",
                             type = "toggle",
-                            get = function(info) return self.db.global.playRemoteDrums; end,
-                            set = function(info, v) self.db.global.playRemoteDrums = v; end,
+                            get = function(info) return self.db.global.enableDrums; end,
+                            set = function(info, v) self.db.global.enableDrums = v; end,
                         },
                     },
+                },
+                desc1 = {
+                    order = 4,
+                    type = "description",
+                    name = ("%s: https://github.com/soosticus/PriorityLootList"):format(
+                        self:ColorizeText("GitHub Support")),
+                },
+                desc2 = {
+                    order = 5,
+                    type = "description",
+                    name = ("%s: https://discord.gg/hqSNgup7cR"):format(
+                        self:ColorizeText("Discord")),
                 },
             },
         },

@@ -10,7 +10,13 @@ function PLL:InitConsole()
             name = "drums",
             desc = "Plays a fun instrumental for all to enjoy!",
             type = "execute",
-            func = function() self:PlayChickenDrums(); end
+            func = function() 
+                if(self.db.global.enableDrums) then
+                    self:SendComm(self.CommTypes.PLAY_DRUMS, "", "RAID");
+                else
+                    self:Notify(string.format("Chicken Drums are disabled.  Re-enable in %s options. (/pll options)", PLL.name));
+                end
+            end
         },
         killdrums = {
             name = "killdrums",
@@ -19,10 +25,18 @@ function PLL:InitConsole()
             func = function() self:StopChickenDrums(); end
         },
         options = {
-            name = "Options",
+            name = "options",
             desc = "Opens the configuration interface",
             type = "execute",
             func = function() self:OpenOptionsInterface(); end
+        },
+        toggledebug = {
+            name = "toggledebug",
+            desc = "Toggles debug logging",
+            type = "execute",
+            hidden = true,
+            cmdHidden = nil;
+            func = function() self.DebugEnabled = not self.DebugEnabled; end
         },
     };
 

@@ -1,10 +1,19 @@
 local _G = _G;
 local PLL = _G.PLL;
 
-PLL.Color = "|cFF327DA8";
-function PLL:ColorizeText(text)
-    return ("%s%s|r"):format(PLL.Color, text);
+function PLL:ColorizeText(text, color)
+	c = self.Colors["Blue"].hex
+	if(self.Colors[color] ~= nil) then
+		c = self.Colors[color].hex
+	end
+    return ("|cFF%s%s|r"):format(c, text);
 end
+
+PLL.Colors = {
+	    ["Blue"] = { r = 0.26, g = 0.53, b = 0.96, hex = "4287F5" },
+	  ["Purple"] = { r = 0.56, g = 0.25, b = 0.96, hex = "9042f5" },
+	     ["Red"] = { r = 0.69, g = 0.13, b = 0.13, hex = "B22222" }
+}
 
 PLL.ClassColors = {
 	  ["Druid"] = { r = 1.00, g = 0.49, b = 0.04, hex = "FF7D0A" },
@@ -17,20 +26,3 @@ PLL.ClassColors = {
 	["Warlock"] = { r = 0.53, g = 0.53, b = 0.93, hex = "8787ED" },
 	["Warrior"] = { r = 0.78, g = 0.61, b = 0.43, hex = "C79C6E" }
 }
-
--- local tc_classes = {}
-
--- core.faction = UnitFactionGroup("player")
--- if core.faction == "Horde" then
--- 	tc_classes = { "Druid", "Hunter", "Mage", "Priest", "Rogue", "Shaman", "Warlock", "Warrior" }
--- elseif core.faction == "Alliance" then
--- 	tc_classes = { "Druid", "Hunter", "Mage", "Paladin", "Priest", "Rogue", "Warlock", "Warrior" }
--- end
-
--- core.classes = {}
--- for i = 1, #tc_classes do
--- 	local cname = tc_classes[i]
--- 	local lname = string.upper(cname)
--- 	core.CColors[lname] = ClassColors[cname]
--- 	table.insert(core.classes, lname)
--- end
