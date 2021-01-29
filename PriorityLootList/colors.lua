@@ -2,9 +2,9 @@ local _G = _G;
 local PLL = _G.PLL;
 
 function PLL:ColorizeText(text, color)
-	local c = self.AllColors["Blue"].hex
+	local c = self.AllColors["Blue"].hex;
 	if(self.AllColors[color] ~= nil) then
-		c = self.AllColors[color].hex
+		c = self.AllColors[color].hex;
 	end
     return ("|cFF%s%s|r"):format(c, text);
 end
@@ -38,7 +38,7 @@ PLL.Rainbow = {
 	        ["Blue"] = { r = 0.62, g = 0.76, b = 0.82, hex = "9EC1CF" },
 	      ["Indigo"] = { r = 0.47, g = 0.00, b = 0.70, hex = "7600B1" },
 	      ["Violet"] = { r = 0.80, g = 0.60, b = 0.79, hex = "CC99C9" },
-}
+};
 
 PLL.ClassColors = {
 	["Death Knight"] = { r = 0.77, g = 0.13, b = 0.24, hex = "C41F3B" },
@@ -53,15 +53,16 @@ PLL.ClassColors = {
 	      ["Shaman"] = { r = 0.00, g = 0.44, b = 0.88, hex = "0070DE" },
 	     ["Warlock"] = { r = 0.59, g = 0.51, b = 0.79, hex = "9482C9" },
 	     ["Warrior"] = { r = 0.79, g = 0.62, b = 0.44, hex = "C79C6E" },
-}
+};
 
-PLL.Colors = {
+PLL.Colors = { };
 
-}
-
+PLL.AllColors = nil;
 function PLL:InitColors()
-	self.AllColors = {}
-	for k,v in pairs(self.ClassColors) do self.AllColors[k] = v end
-	for k,v in pairs(self.Rainbow) do self.AllColors[k] = v end
-	for k,v in pairs(self.Colors) do self.AllColors[k] = v end
+	if(not self.AllColors) then
+		self.AllColors = { };
+		for k,v in pairs(self.ClassColors) do self.AllColors[k] = v end;
+		for k,v in pairs(self.Rainbow) do self.AllColors[k] = v end;
+		for k,v in pairs(self.Colors) do self.AllColors[k] = v end;
+	end
 end

@@ -17,7 +17,7 @@ function PLL:PlayChickenDrums()
 end
 
 function PLL:OnEnable()
-    self.InitColors();
+    self:InitColors();
     self:RegisterComm(self:GetCommPrefix());
     self:InitOptions();
     self:InitConsole();
